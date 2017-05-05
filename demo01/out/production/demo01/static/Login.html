@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+</head>
+<body>
+    <form id="loginForm" onsubmit="formSubmit(); return false;">
+        用户名：<input type="text" name="username">
+        密 码：<input type="password" name="password">
+        <input type="submit" value="提交">
+        <input type="reset" value="重置">
+    </form>
+
+    <script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+    <script type="text/javascript">
+        function formSubmit() {
+            $.ajax({
+                type: "POST",//使用Post方式请求
+                url: "login.do",//请求接口的地址
+                dataType: "json",//请求内容的格式
+                contentType: "application/json",//返回内容的格式
+                data: arrayToJson($("#loginForm").serializeArray()), //请求内容
+                success: function (data, textStatus) {
+                    if("success" == textStatus){
+                        if ("0000" == data.retCode){
+                            alert(data.retMsg);
+                            window.location.href=data.result.url;
+                        }
+                        else{
+                            alert(data.retMsg);
+                        }
+                    }
+                }
+            });
+        }
+        function arrayToJson(formArray){
+            var dataArray = {};
+            $.each(formArray,function(){
+                if(dataArray[this.name]){
+                    if(!dataArray[this.name].push){
+                        dataArray[this.name] = [dataArray[this.name]];
+                    }
+                    dataArray[this.name].push(this.value || '');
+                }else{
+                    dataArray[this.name] = this.value || '';
+                }
+            });
+            return JSON.stringify(dataArray);
+        }
+    </script>
+</body>
+</html>
