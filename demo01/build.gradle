@@ -29,7 +29,9 @@ repositories {
 	maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
 	mavenCentral()
 }
-
+repositories {
+	jcenter()
+}
 configurations {
 	providedRuntime
 }
@@ -42,4 +44,7 @@ dependencies {
 	compile 'mysql:mysql-connector-java:6.0.5'
 	compile 'com.zaxxer:HikariCP:2.5.1'
 
+}
+dependencies {
+	testCompile 'org.testng:testng:5.0'
 }

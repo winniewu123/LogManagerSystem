@@ -1,0 +1,28 @@
+<test name="Regression1">
+
+    <groups>
+
+       <run>
+
+           <exclude name="brokenTests" />
+
+           <include name="checkinTests" />
+
+       </run>
+
+    </groups>
+
+    <classes>
+
+       <class name="test.IndividualMethodsTest">
+
+           <methods>
+
+              <include name="testMethod" />
+
+           </methods>
+
+       </class>
+
+    </classes>
+	</test>

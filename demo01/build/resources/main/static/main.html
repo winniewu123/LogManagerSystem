@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>欢迎</title>
+    <!--<script type="text/javascript" src="js/jquery-3.2.0.min.js">-->
+      <!--function add2(){-->
+      <!--sum =2+3;-->
+        <!--alert(sum);-->
+      <!--}-->
+      <!--add2();-->
+  <!--</script>-->
+</head>
+<body onload="messagejiazai()">
+<h1>欢迎登陆进主界面啦！！！！！！！</h1>
+<input type='text' id='txt1' />
+<select id='select'>
+    <option value='+'>+</option>
+    <option value="-">-</option>
+    <option value="*">*</option>
+    <option value="/">/</option>
+</select>
+<input type='text' id='txt2' />
+<input type='button' value=' = ' onclick="count()" /> <!--通过 = 按钮来调用创建的函数，得到结果-->
+<input type='text' id='fruit' />
+<form>
+      显示时间戳：<input type="text" name="timestamp">
+      <input type="button" value="获取时间戳" onclick="formSubmitshijian()">
+      <input type="button" value="计算价格" onclick="jisuanprice()">
+      <input type="button" value="求和" onclick="add(2,3)">
+      <input type="button" value="比较大小" onclick="bijiao1(5,3)">
+      <input type="button" value="鼠标经过事件" onmouseover="message()">
+    <input type="button" value="分割输出" onclick="fengeshuchu()">
+    <input type="text" id="count11" />
+    <input type="button" value="Start" onclick="startCount()"  />
+    <input type="button" value="Stop"  onclick="stopCount()"  />
+  </form>
+<form>
+    <a href="http://www.imooc.com" onmouseout="messageout()">点击我</a>
+</form>
+<form>
+    <select name="career" onfocus="messagefocus()">
+        <option>学生</option>
+        <option>教师</option>
+        <option>工程师</option>
+        <option>演员</option>
+        <option>会计</option>
+    </select>
+</form>
+
+<form>
+    个人简介：<br>
+    <textarea name="summary" cols="60" rows="5" onselect="messageonselect()" onchange="messageonchange()">请写入个人简介，不少于200字！</textarea>
+</form>
+<form>
+    用户:<input name="username1" type="text" value="请输入用户名！" >
+    密码:<input name="password1" type="text" value="请输入密码！" onblur="messageonblur()" >
+    <input type="button" value="点击我，打开新窗口" onclick="openW()"  />
+    <input type="button" value="Stop" onclick="clearInterval(i)"  />
+    <input type="text"   id="count" />
+</form>
+<script type="text/javascript" src="js/jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+//    <!--调用格式setInterval("clock()",1000)定时器
+//    或
+//    setInterval(clock,1000)-->setInterval(代码,交互时间);1. 代码：要调用的函数或要执行的代码串。
+//2. 交互时间：周期性执行或调用表达式之间的时间间隔，以毫秒计（1s=1000ms）。
+var attime;
+function clock(){
+    var time=new Date();
+//    attime= time.getHours()+':'+time.getMinutes()+':'+time.getSeconds();
+    attime= time.getHours()+':'+time.getMinutes()+':'+time.getSeconds();
+    document.getElementById("clock").value = attime;
+}
+//取消计时器clearInterval() ----- clearInterval(id_of_setInterval)
+function clock1(){
+    var time=new Date();
+    document.getElementById("clock1").value = time;
+}
+// 每隔100毫秒调用clock函数，并将返回值赋值给i
+var i=setInterval("clock1()",100);
+//var int=setInterval(clock,1000);
+    <!--window对象是BOM的核心，window对象指当前的浏览器窗口-->
+    function openW(){
+        windows.alert("欢迎来到慕课网！");
+        window.open('http://www.imooc.com','_blank','width=600,height=400');}
+    var mydate=new Date();
+    var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    document.write("今天是：" + weekday[mydate.getDay()]);
+    mydate.setTime( mydate.getTime()  + 2* 60 * 60 * 1000);
+    document.write("推迟二小时时间：" + mydate);
+    var messagestr="I love JavaScript!";
+    var mychar= messagestr. toUpperCase();
+    var mychar1=messagestr.toLowerCase();
+    document.write("字符串转化为大写为："+mychar+"<br>");
+    document.write("字符串转化为小写为："+mychar1+"<br>");
+    //返回字符串固定位置的字符
+    var mystr="I love JavaScript!"
+    document.write(mystr.charAt(mystr.length-1) );
+//setTimeout()计时器，在载入后延迟指定时间后,去执行一次表达式,仅执行一次。
+var num=0;
+function startCount() {
+    document.getElementById('count').value=num;
+    num=num+1;
+    setTimeout("startCount()",1000);
+}
+setTimeout("startCount()",1000);
+//setTimeout()和clearTimeout()一起使用，停止计时器。
+var num=0;
+var i;
+function startCount(){
+    document.getElementById('count11').value=num;
+    num=num+1;
+    i=setTimeout("startCount()",1000);
+}
+function stopCount(){
+    clearTimeout(i);
+}
+//history对象记录了用户曾经浏览过的页面(URL)，并可以实现浏览器前进与后退相似导航的功能。
+//注意:从窗口被打开的那一刻开始记录，每个浏览器窗口、每个标签页乃至每个框架，都有自己的history对象与特定的window对象关联。
+var HL = windows.history.length   ;
+document.write(HL);
+//    返回指定的字符首次出现的位置如下找出第二个0出现的位置
+    var mystr11="Hello World!"
+    document.write(mystr11.indexOf("o",5));
+//    字符串分割
+    var mystr2="86-010-85468578";
+    document.write( mystr2.split("-")+ "<br />");
+    document.write( mystr2.split("")+ "<br />");
+    document.write(  mystr2.split("",3));
+//    提取字符串
+    var mystr3="Hello World!"
+    document.write( mystr3.substring(6,10)+ "<br />");
+    document.write(mystr3.substring(0,4));
+//    提取指定数目字符stringObject.substr(startPos,length)
+    document.write( mystr3.substr(2,1)+ "<br />");//l
+    document.write(  mystr3.substr(1,mystr3.length-1));
+//    Math对象
+    var mypi=Math.PI;
+    var myabs=Math.abs(-15);
+    document.write(mypi);
+    document.write(myabs);
+//    向上取整
+    document.write(Math.ceil(-3.9))//-3
+//    向下取整
+   documet.write(Math.floor(2.3))//2
+//    四舍五入
+    document.write(Math.round(3.4))//3
+//    random() 方法可返回介于 0 ~ 1（大于或等于 0 但小于 1 )之间的一个随机数。
+    document.write(Math.random());
+//    获得0-10之间的随机整数
+    document.write((Math.random())*10);
+    var r1=Math.random()*10;
+    var result=Math.round(r1);
+//    array数组对象 concat() 方法用于连接两个或多个数组。此方法返回一个新数组，不改变原来的数组。
+    var mya = new Array(3);
+    mya[0] = "1";
+    mya[1] = "2";
+    mya[2] = "3";
+    document.write(mya.concat(4,5)+"<br>");
+    document.write(mya);
+//    定分隔符连接数组元素join()
+    var myarr1= new Array("86","010")
+    var myarr2= new Array("84697581");
+    var myarr3= myarr1.concat(myarr2);
+    document.write(myarr3.join("-"));
+//    颠倒数组元素顺序reverse()
+    var myarr11 = new Array(3)
+    myarr11[0] = "1"
+    myarr11[1] = "2"
+    myarr11[2] = "3"
+    document.write(myarr11 + "<br />");
+    document.write(myarr11.reverse());
+//    slice() 方法可从已有的数组中返回选定的元素。
+    var myarr4= ["我","爱","你"];
+    document.write(myarr4.slice(1,3));
+//sort()方法使数组中的元素按照一定的顺序排列。
+//    sort()函数使用的是冒泡排序，冒泡排序会重复地走访要排序的数列，一次比较两个元素，如果他们的顺序错误就把他们交换过来，一直重复地进行直到说该数列已经排序完成。
+//    如果a-b>0(即正数)就把a和b的位置交换，也就是较小的一个数会排到前面；
+//    如果b-a>0就把a和b的位置交换，也就是较大的一个数会排到前面。
+    function sortNum(a,b) {
+        return a - b;
+        //升序，如降序，把“a - b”该成“b - a”
+    }
+    var myarr = new Array("80","16","50","6","100","1");
+    document.write(myarr + "<br>");
+    document.write(myarr.sort(sortNum));
+    //前端开发测试函数
+    //无参数的函数
+    function formSubmitshijian() {
+        var mychar="I love JavaScript";
+        var mynum = 30;
+        alert("hello!");
+        alert(mynum);
+        alert(mychar);
+        var mymessage=confirm("你喜欢JavaScript吗?");
+        if(mymessage==true)
+        {   document.write("很好,加油!");   }
+        else
+        {  document.write("JS功能强大，要学习噢!");   }
+        var mymessage1=confirm("你是女士吗？")         ;
+        if(mymessage1==true)
+        {
+            document.write("你是女士!");
+        }
+        else
+        {
+            document.write("你是男士!");
+        }
+        var myname=prompt("请输入你的姓名:");
+        if(myname!=null)
+        {
+            //alert("你好"+myname);
+            document.write("你好"+myname);
+        }
+        else
+        {  alert("你好 my friend.");  }
+
+        window.open('http://www.imooc.com','_blank','width=800,height=600,top=300,left=300,menubar=yes,toolbar=yes, status=yes,scrollbars=yes')
+    }
+    window.onunload = onunload_message();
+    function onunload_message(){
+        alert("您确定离开该网页吗？");
+    }
+    function  messagejiazai() {
+        alert("正在加载中，请稍等··");
+    }
+    function messageonblur(){
+        alert("请确定已输入密码后，在移开!"); }
+    function messagefocus(){
+        alert("请选择，您现在的职业！");
+    }
+    function messageonselect(){
+        alert("您触发了选中事件！"); }
+    function messageonchange(){
+        alert("您改变了文本！"); }
+    function jisuanprice() {
+        var jichujia1=2;
+        var  jichujia2=3;
+        var sum=jichujia1+jichujia2;
+        alert(sum);
+    }
+    //有参数的函数
+    function add(x,y){
+        var sum=x+y;
+        document.write("两数之和为："+sum+"<br/>");
+    }
+    //计算加减乘除
+    function count(){
+        var a1=parseInt(document.getElementById("txt1").value);
+        //获取第一个输入框的值
+        //获取第二个输入框的值
+        var b1=parseInt(document.getElementById("txt2").value);
+
+        //获取选择框的值
+        var c1=document.getElementById("select").value;
+        //获取通过下拉框来选择的值来改变加减乘除的运算法则
+        //设置结果输入框的值
+        if (a1==null||b1==null){
+            alert("请输入数值！");
+        }else
+        {        switch(c1){
+            case '+':
+                sum=a1+b1;
+                break;
+            case '-':
+                sum=a1-b1;
+                break;
+            case '*':
+                sum=a1*b1;
+                break;
+            case '/':
+                if (b1==0||b1==null){
+                    alert("除数不能为0或者空");
+                }
+                sum=a1/b1;
+        }
+            document.getElementById("fruit").value=sum;
+        }
+    }
+//    实现两数相乘
+    function  app2(x,y) { var sum,x,y;
+        sum = x * y;
+        return sum;
+    }
+//    实现三数相加
+    function    add3(x,y,z) {
+        sum = x + y +z;
+        document.write(x+"、"+y+"、"+z+"和:"+sum+"<br/>");
+    }
+//    比较大小
+    function bijiao1(x,y){
+//定义函数{
+        if(x>y)
+        {  var bignum
+            bignum=x;
+//            renturn bignum;
+            alert(x);
+        }
+        else if(x==y)
+        {
+            bignum=x;
+//            renturn bignum;
+            alert("两数相等均为"+x);
+        }
+        else
+        {
+            bignum=y;
+//            renturn bignum;
+            alert("较大数为"+y);
+        }
+    }
+    //定义函数
+    function bijiao(x,y) {
+        if(x>y)
+        {  return x;}
+//函数体，判断两个整数比较的三种情况
+        else if (x==y){;
+            return x;}
+        else {return y;}
+    }
+    var tag = 0;
+    function messageout(){
+        if(tag==0)
+        {
+            tag=1;
+            alert("不要移开，点击后进行慕课网!"); }
+        }
+    function  fengeshuchu(){
+    var scoreStr = "小明:87;小花:81;小红:97;小天:76;小张:74;小小:94;小西:90;小伍:76;小迪:64;小曼:76";
+    var scoreArr=scoreStr.splite(";");
+    var sum=0;
+    var s = new Array();
+    for(var i=0;i<scoreArr.length;i++)
+    {
+        s[i] = parseInt(scoreArr[i].substring(scoreArr[i].indexOf(":") + 1));
+        sum += s[i];
+        // var arr = scoreArr[i].split(":");
+//  sum=sum+parseInt(arr[1]);
+        //sum+=parseInt(scoreArr[i].subString(3));
+    }
+    avg = Math.round(sum/s.length);
+    document.write("--班级总分为:"+avg);
+    //从数组中将成绩撮出来，然后求和取整，并输出。
+    //document.write(" -- 班级平均分："+Math.round(sum/s.length));
+    var Udate=new Date();
+    //通过javascript的日期对象来得到当前的日期，并输出。
+    //document.write(Udate.getDate());
+    var weekday=["星期日","星期一","星期二","星期三","星期四","星期五","星期六"];
+    var myyear = Udate.getFullYear();
+    var mymon = Udate.getMonth()+1;
+    var mydatee = Udate.getDate();
+    var myday = Udate.getDay();
+    document.write(myyear+"年"+mymon+"月"+mydatee+"日"+weekday[myday]);
+        }
+    function message(){
+        confirm("请输入密码后，再单击确定!"); }
+    //调用函数，实现下面两组数中，返回较大值。
+    document.write(" 5 和 4 的较大值是:"+bijiao(5,4)+"<br>");
+    document.write(" 6 和 3 的较大值是:"+bijiao(6,3));
+    jiaoda=bijiao(5,4);
+    jiaoda1=bijiao(6,3);
+    //调用函数，实现下面两组数中，返回较大值。
+    document.write(" 5 和 4 的较大值是:"+jiaoda+"<br>");
+    document.write(" 6 和 3 的较大值是:"+jiaoda1 );
+    //    调用函数
+    sumA=add3(5,8,3);
+    sumB=add3(7,1,4);
+    req1=app2(5,6);
+    req2=app2(2,3);
+    sumq=req1+req2;
+//    document.write("sumA为"+sumA);
+//    document.write("sumB为"+sumB);
+    document.write("req1的值:"+req1+"<br/>");
+    document.write("req2的值:"+req2+"<br/>");
+    document.write(req1+"与"+req2+"和:"+sumq);
+</script>
+<!--<form>-->
+    <!--输入排序前内容：<input type="text" name="paixutext">-->
+    <!--<input type="button" value="生成排序后顺序">-->
+    <!--输入排序后内容：<input type="text" name="paixutext1">-->
+    <!--显示：<input type="text" name="sign">-->
+    <!--<input type="button" value="计算签名" onclick="calSign()">-->
+    <!---->
+<!--</form>-->
+</body>
+</html>
